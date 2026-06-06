@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^4.0.0",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "yt-stream": "^1.7.4"
   }
 }
