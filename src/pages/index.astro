@@ -1,11 +1,2280 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../../src/styles/global.css";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- SEO Meta Tags -->
+        <title>
+            Mindguard: Melindungi Kesehatan Mental dari Manipulasi Algoritma
+        </title>
+        <meta
+            name="description"
+            content="Platform edukasi psikologis dan audit dampak algoritma media sosial terhadap sirkuit dopamin dan kesehatan mental remaja."
+        />
+        <meta
+            name="keywords"
+            content="Mindguard, Kesehatan Mental, Psikologi, Dopamin, Adiksi Digital, Kurzgesagt, Harvard STRIPED, Michigan State University"
+        />
+        <meta name="author" content="Mindguard Team" />
+
+        <!-- Google Fonts for Kurzgesagt Theme (Rounded and Friendly Headings, readable body) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Nunito:wght@300..900&display=swap"
+            rel="stylesheet"
+        />
+
+        <style is:global>
+            :root {
+                --sage-green: #f0f4f1;
+                --deep-teal: #1e3e3f;
+                --coral-accent: #ee6c81;
+                --coral-soft: #f3a3b1;
+                --yellow-muted: #f5c564;
+                --mint-green: #8ae3c2;
+                --mint-soft: #a7f3d0;
+                --cream-card: #fffdf9;
+            }
+
+            body {
+                background-color: var(--sage-green);
+                color: var(--deep-teal);
+                font-family: "Nunito", sans-serif;
+                overflow-x: hidden;
+            }
+
+            .font-fredoka {
+                font-family: "Fredoka", sans-serif;
+            }
+
+            /* Beautiful Organic Blobs for Kurzgesagt biological style */
+            .organic-blob-1 {
+                background-color: rgba(138, 227, 194, 0.12);
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            }
+
+            .organic-blob-2 {
+                background-color: rgba(243, 163, 177, 0.1);
+                border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
+            }
+
+            .organic-blob-3 {
+                background-color: rgba(245, 197, 100, 0.1);
+                border-radius: 60% 40% 60% 40% / 50% 40% 60% 50%;
+            }
+
+            /* Custom Cursor Styling */
+            #cursor-custom {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 36px;
+                height: 36px;
+                margin-top: -18px;
+                margin-left: -18px;
+                pointer-events: none;
+                z-index: 10000;
+                display: none;
+                transition: transform 0.04s ease-out;
+            }
+
+            @media (min-width: 1024px) {
+                body {
+                    cursor: none;
+                }
+                #cursor-custom {
+                    display: block;
+                }
+                a,
+                button,
+                input,
+                select,
+                textarea,
+                [role="button"],
+                iframe,
+                .interactive-element {
+                    cursor: none;
+                }
+            }
+
+            /* Scrollbar in soft sage/teal */
+            ::-webkit-scrollbar {
+                width: 12px;
+                height: 12px;
+            }
+            ::-webkit-scrollbar-track {
+                background: var(--sage-green);
+            }
+            ::-webkit-scrollbar-thumb {
+                background: var(--deep-teal);
+                border-radius: 9999px;
+                border: 3px solid var(--sage-green);
+            }
+            ::-webkit-scrollbar-thumb:hover {
+                background: var(--coral-accent);
+            }
+
+            /* Infinite Scrolling Marquee for mental health reflections */
+            @keyframes scroll-ticker {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(-50%);
+                }
+            }
+            .ticker-track {
+                display: flex;
+                width: max-content;
+                animation: scroll-ticker 30s linear infinite;
+            }
+
+            /* Smooth fade-in blur micro-animation */
+            @keyframes blurIn {
+                0% {
+                    filter: blur(12px);
+                    opacity: 0;
+                    transform: scale(0.96);
+                }
+                100% {
+                    filter: blur(0);
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+            .animate-blur-in {
+                animation: blurIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+        </style>
+    </head>
+    <body
+        class="min-h-screen relative flex flex-col justify-between selection:bg-[#F3A3B1] selection:text-slate-900"
+    >
+        <!-- ORGANIC PASTEL BLOBS FOR BIOLOGY AESTHETIC -->
+        <div
+            class="absolute top-[8%] left-[2%] w-[45vw] h-[45vw] organic-blob-1 pointer-events-none -z-10"
+        >
+        </div>
+        <div
+            class="absolute top-[42%] right-[2%] w-[48vw] h-[48vw] organic-blob-2 pointer-events-none -z-10"
+        >
+        </div>
+        <div
+            class="absolute bottom-[8%] left-[15%] w-[40vw] h-[40vw] organic-blob-3 pointer-events-none -z-10"
+        >
+        </div>
+
+        <!-- CUSTOM CURSOR -->
+        <div id="cursor-custom" class="pointer-events-none">
+            <!-- Injected dynamically by JS (Butterfly default, Hand hover) -->
+        </div>
+
+        <!-- HEADER & NAVIGATION -->
+        <header
+            class="border-b border-slate-200/80 bg-white/70 sticky top-0 z-40 backdrop-blur-md"
+        >
+            <!-- Upper Alert Ticker -->
+            <div
+                class="bg-[#1E3E3F] text-[#F0F4F1] px-4 py-1.5 flex justify-between items-center text-[11px] font-fredoka tracking-wide"
+            >
+                <div class="flex items-center gap-2">
+                    <span
+                        class="inline-block w-2 h-2 rounded-full bg-[#8AE3C2] animate-pulse"
+                    ></span>
+                    <span
+                        >MINDGUARD MENTAL HEALTH ARCHITECTURE // PSIKOLOGI
+                        DIGITAL</span
+                    >
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <span>DATABASE: HARVARD STRIPED &amp; MSU</span>
+                    <span id="threat-indicator" class="text-[#F5C564] font-bold"
+                        >STATUS: PIKIRAN STABIL</span
+                    >
+                </div>
+                <div>
+                    <span id="realtime-clock"
+                        >SYS_TIME: 2026-06-04 16:00:00 UTC</span
+                    >
+                </div>
+            </div>
+
+            <div
+                class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4"
+            >
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3">
+                    <!-- Flat Vector SVG: Brain with plants and blooming flowers -->
+                    <div
+                        class="w-12 h-12 flex items-center justify-center relative group"
+                    >
+                        <svg
+                            viewBox="0 0 100 100"
+                            class="w-full h-full transform group-hover:scale-105 transition-transform duration-300"
+                        >
+                            <circle
+                                cx="50"
+                                cy="54"
+                                r="38"
+                                fill="#FFFDF9"
+                                stroke="#1E3E3F"
+                                stroke-width="3"></circle>
+                            <!-- Brain -->
+                            <path
+                                d="M42 42 C34 42, 32 48, 38 52 C32 54, 34 64, 42 64 C45 64, 47 61, 50 61 C53 61, 55 64, 58 64 C66 64, 68 54, 62 52 C68 48, 66 42, 58 42 C55 42, 53 45, 50 45 C47 45, 45 42, 42 42 Z"
+                                fill="#F3A3B1"
+                                stroke="#1E3E3F"
+                                stroke-width="2.5"></path>
+                            <!-- Plant growing out -->
+                            <path
+                                d="M50 42 Q 47 30, 52 22"
+                                fill="none"
+                                stroke="#1E3E3F"
+                                stroke-width="2"
+                                stroke-linecap="round"></path>
+                            <path
+                                d="M52 22 C55 22, 58 20, 55 17 C52 14, 50 19, 52 22 Z"
+                                fill="#8AE3C2"
+                                stroke="#1E3E3F"
+                                stroke-width="1.5"></path>
+                            <path
+                                d="M48 30 C44 30, 42 27, 45 25 C48 23, 50 28, 48 30 Z"
+                                fill="#8AE3C2"
+                                stroke="#1E3E3F"
+                                stroke-width="1.5"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1
+                            class="font-fredoka font-bold text-2xl tracking-wide text-[#1E3E3F]"
+                        >
+                            Mindguard
+                        </h1>
+                        <p
+                            class="text-xs font-nunito tracking-wide text-slate-500 font-semibold"
+                        >
+                            Ruang Proteksi &amp; Pemulihan Mental Remaja
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SPA Pill Tabs -->
+                <nav
+                    class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-full border border-slate-200/60 shadow-inner"
+                >
+                    <button
+                        id="tab-btn-home"
+                        data-tab="home"
+                        class="nav-tab-btn px-5 py-2 rounded-full font-fredoka text-sm font-bold tracking-wide transition-all duration-300 bg-[#1E3E3F] text-white"
+                    >
+                        🌱 Mindguard Home
+                    </button>
+                    <button
+                        id="tab-btn-database"
+                        data-tab="database"
+                        class="nav-tab-btn px-5 py-2 rounded-full font-fredoka text-sm font-bold tracking-wide transition-all duration-300 text-slate-600 hover:text-[#1E3E3F] hover:bg-white/60"
+                    >
+                        📊 Data Hub
+                    </button>
+                    <button
+                        id="tab-btn-scanning"
+                        data-tab="scanning"
+                        class="nav-tab-btn px-5 py-2 rounded-full font-fredoka text-sm font-bold tracking-wide transition-all duration-300 text-slate-600 hover:text-[#1E3E3F] hover:bg-white/60"
+                    >
+                        🧠 Digital Audit
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MAIN SPA CONTENT GRID -->
+        <main
+            class="flex-grow max-w-6xl w-full mx-auto px-4 py-8 sm:py-12 md:py-16"
+        >
+            <!-- ==========================================
+        SECTION A: HOME VIEW (Mindguard Home)
+        ========================================== -->
+            <section
+                id="view-home"
+                class="spa-view block transition-opacity duration-300"
+            >
+                <div
+                    class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16"
+                >
+                    <div class="lg:col-span-7 space-y-6">
+                        <div
+                            class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-[#8AE3C2]/20 rounded-full text-[#1E3E3F] font-fredoka text-sm font-bold shadow-sm"
+                        >
+                            <span
+                                class="inline-block w-2.5 h-2.5 rounded-full bg-[#8AE3C2] animate-pulse"
+                            ></span>
+                            Psikologi Digital vs Manipulasi Adiksi
+                        </div>
+
+                        <h2
+                            class="font-fredoka text-4xl sm:text-5xl md:text-6xl font-extrabold text-[#1E3E3F] leading-tight"
+                        >
+                            Melindungi Pikiran di <br
+                                class="hidden sm:inline"
+                            />
+                            <span
+                                class="text-[#EE6C81] underline decoration-wavy decoration-[#8AE3C2]"
+                                >Era Manipulasi Digital</span
+                            >
+                        </h2>
+
+                        <p
+                            class="text-slate-600 text-lg sm:text-xl max-w-xl leading-relaxed"
+                        >
+                            Menjelajahi bagaimana algoritma media sosial
+                            mengeksploitasi celah psikologis dan dopamin remaja,
+                            serta langkah nyata mengembalikan kedamaian mental
+                            Anda.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button
+                                onclick="document.getElementById('tab-btn-scanning').click();"
+                                class="px-8 py-4 bg-[#1E3E3F] text-white hover:bg-[#2A5455] font-fredoka text-md font-bold rounded-3xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 shadow-md"
+                            >
+                                🧠 Ikuti Digital Risk Audit
+                            </button>
+                            <button
+                                onclick="document.getElementById('tab-btn-database').click();"
+                                class="px-8 py-4 bg-[#FFFDF9] text-[#1E3E3F] hover:bg-slate-50 font-fredoka text-md font-bold rounded-3xl border border-slate-200 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 shadow-sm"
+                            >
+                                📊 Lihat Data Penelitian
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div
+                            class="bg-[#FFFDF9] rounded-[2.5rem] border border-slate-200 p-8 shadow-[0_12px_40px_rgba(0,0,0,0.03)] w-full max-w-md overflow-hidden space-y-6"
+                        >
+                            <div
+                                class="h-48 rounded-2xl overflow-hidden relative border border-slate-100"
+                            >
+                                <svg
+                                    viewBox="0 0 200 120"
+                                    class="w-full h-full"
+                                >
+                                    <rect
+                                        width="200"
+                                        height="120"
+                                        fill="#FAF5FF"></rect>
+                                    <circle
+                                        cx="100"
+                                        cy="75"
+                                        r="22"
+                                        fill="#F5C564"
+                                        opacity="0.8"></circle>
+                                    <path
+                                        d="M-10 120 Q 50 85, 110 102 T 210 120 Z"
+                                        fill="#E2ECE9"></path>
+                                    <path
+                                        d="M-10 120 Q 75 92, 140 105 T 210 120 Z"
+                                        fill="#D2E4E0"
+                                        opacity="0.9"></path>
+                                    <path
+                                        d="M40 120 Q 100 98, 160 106 T 210 120 Z"
+                                        fill="#8AE3C2"
+                                        opacity="0.6"></path>
+                                    <circle
+                                        cx="72"
+                                        cy="104"
+                                        r="2.5"
+                                        fill="#EE6C81"></circle>
+                                    <path
+                                        d="M72 104 L72 109"
+                                        stroke="#1E3E3F"
+                                        stroke-width="1"></path>
+                                    <circle
+                                        cx="128"
+                                        cy="107"
+                                        r="3"
+                                        fill="#F3A3B1"></circle>
+                                    <path
+                                        d="M128 107 L128 111"
+                                        stroke="#1E3E3F"
+                                        stroke-width="1"></path>
+                                    <g transform="translate(100, 92)">
+                                        <circle
+                                            cx="0"
+                                            cy="-9"
+                                            r="3.5"
+                                            fill="#1E3E3F"></circle>
+                                        <path
+                                            d="M-5 2 C-2 -4, 2 -4, 5 2 Z"
+                                            fill="#1E3E3F"></path>
+                                        <ellipse
+                                            cx="0"
+                                            cy="3"
+                                            rx="7"
+                                            ry="2.2"
+                                            fill="#1E3E3F"></ellipse>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="space-y-2">
+                                <h4
+                                    class="font-fredoka text-lg font-bold text-[#1E3E3F]"
+                                >
+                                    Menemukan Kedamaian Mental
+                                </h4>
+                                <p
+                                    class="text-xs text-slate-500 font-semibold leading-relaxed"
+                                >
+                                    Ketika kita belajar membatasi asupan umpan
+                                    balik instan algoritma, sistem saraf kita
+                                    memiliki waktu untuk rileks, meregulasi
+                                    kortisol, dan memulihkan kadar serotonin
+                                    alami.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <div class="text-center sm:text-left space-y-1">
+                        <h3
+                            class="font-fredoka text-3xl font-extrabold text-[#1E3E3F] flex items-center justify-center sm:justify-start gap-2"
+                        >
+                            <span>👥</span> Kisah Perjalanan &amp; Hambatan Psikologis
+                            Remaja
+                        </h3>
+                        <p
+                            class="text-md text-slate-500 font-semibold max-w-3xl leading-relaxed"
+                        >
+                            Di balik angka dan statistik, terdapat jiwa-jiwa
+                            muda yang rentan terhadap manipulasi hormon. Berikut
+                            adalah studi kasus psikologis tentang bagaimana
+                            adiksi sirkuit otak dibentuk secara tidak sadar.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div
+                            class="bg-[#FFFDF9] rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden"
+                        >
+                            <div
+                                class="absolute top-0 left-0 w-full h-1.5 bg-[#F3A3B1]"
+                            >
+                            </div>
+
+                            <div class="space-y-5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <span
+                                            class="text-xs font-bold font-fredoka text-[#EE6C81] tracking-wider uppercase"
+                                            >Perspektif Klinis // Alexis Spence</span
+                                        >
+                                        <h4
+                                            class="font-fredoka text-2xl font-bold text-[#1E3E3F] mt-1"
+                                        >
+                                            Alexis Spence
+                                        </h4>
+                                    </div>
+                                    <span
+                                        class="bg-[#F3A3B1]/20 text-[#EE6C81] text-[11px] font-fredoka font-bold px-3 py-1 rounded-full border border-[#F3A3B1]/40"
+                                        >Body Image Dysmorphia</span
+                                    >
+                                </div>
+
+                                <p
+                                    class="text-slate-600 text-sm sm:text-md leading-relaxed"
+                                >
+                                    Alexis terpapar algoritma media sosial sejak
+                                    usia 11 tahun. Sistem rekomendasi mendeteksi
+                                    kerentanan emosinya dan membombardirnya
+                                    dengan konten diet ekstrem secara konstan
+                                    demi meningkatkan durasi layar. Ini
+                                    mengganggu sirkuit dopaminnya, memicu obsesi
+                                    negatif terhadap penampilan fisik, kecemasan
+                                    kronis, hingga anoreksia parah.
+                                </p>
+
+                                <div
+                                    class="bg-[#F0F4F1]/60 border border-slate-100 p-4 rounded-2xl space-y-2 relative"
+                                >
+                                    <div
+                                        class="text-[#1E3E3F] font-fredoka font-bold text-xs flex items-center gap-2"
+                                    >
+                                        <span>🔒</span> Penyamaran Aplikasi &amp;
+                                        Gejala Kecanduan
+                                    </div>
+                                    <p
+                                        class="text-slate-600 text-xs leading-relaxed"
+                                    >
+                                        Alexis menyembunyikan media sosialnya
+                                        dalam aplikasi berkamuflase ikon
+                                        "Kalkulator". Ini adalah wujud mekanisme
+                                        pertahanan diri psikologis remaja
+                                        (covert behavior) demi melindungi sumber
+                                        dopaminnya dari pembatasan orang tua,
+                                        mengindikasikan tingkat ketergantungan
+                                        yang setara dengan adiksi klinis.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button
+                                    data-case="alexis"
+                                    class="case-expand-btn w-full py-3.5 bg-[#F0F4F1] hover:bg-[#E2ECE9] text-[#1E3E3F] border border-slate-200 font-fredoka text-xs font-bold uppercase rounded-2xl transition-all duration-200"
+                                >
+                                    Pelajari Perjalanan Alexis ➔
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="bg-[#FFFDF9] rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative group overflow-hidden"
+                        >
+                            <div
+                                class="absolute top-0 left-0 w-full h-1.5 bg-[#8AE3C2]"
+                            >
+                            </div>
+
+                            <div class="space-y-5">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <span
+                                            class="text-xs font-bold font-fredoka text-[#0D9488] tracking-wider uppercase"
+                                            >Perspektif Klinis // Selena
+                                            Rodriguez</span
+                                        >
+                                        <h4
+                                            class="font-fredoka text-2xl font-bold text-[#1E3E3F] mt-1"
+                                        >
+                                            Selena Rodriguez
+                                        </h4>
+                                    </div>
+                                    <span
+                                        class="bg-[#8AE3C2]/20 text-[#0D9488] text-[11px] font-fredoka font-bold px-3 py-1 rounded-full border border-[#8AE3C2]/40"
+                                        >Dopamine Hijacking</span
+                                    >
+                                </div>
+
+                                <p
+                                    class="text-slate-600 text-sm sm:text-md leading-relaxed"
+                                >
+                                    Selena (11 tahun) terperangkap dalam
+                                    lingkaran umpan balik visual (likes &amp;
+                                    followers) selama pandemi. Algoritma
+                                    mengeksploitasi kebutuhan otaknya akan
+                                    validasi sosial. Ketika waktu tidurnya
+                                    terganggu oleh gulir tanpa batas (infinite
+                                    scroll), zat kimia otaknya terganggu secara
+                                    drastis, memicu insomnia parah, delusi, dan
+                                    depresi klinis akut.
+                                </p>
+
+                                <div
+                                    class="bg-[#F0F4F1]/60 border border-slate-100 p-4 rounded-2xl space-y-2 relative"
+                                >
+                                    <div
+                                        class="text-[#1E3E3F] font-fredoka font-bold text-xs flex items-center gap-2"
+                                    >
+                                        <span>🧠</span> Kerusakan Zat Kimia Otak &amp;
+                                        Sakau Digital
+                                    </div>
+                                    <p
+                                        class="text-slate-600 text-xs leading-relaxed"
+                                    >
+                                        Saat orang tua Selena membatasi
+                                        ponselnya secara paksa, ia melarikan
+                                        diri dan mengalami gejala kepanikan yang
+                                        setara dengan penarikan zat adiktif
+                                        (withdrawal symptoms). Rentetan paparan
+                                        tanpa filter berujung tragis pada
+                                        hilangnya jiwanya pada tahun 2021.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <button
+                                    data-case="selena"
+                                    class="case-expand-btn w-full py-3.5 bg-[#F0F4F1] hover:bg-[#E2ECE9] text-[#1E3E3F] border border-slate-200 font-fredoka text-xs font-bold uppercase rounded-2xl transition-all duration-200"
+                                >
+                                    Pelajari Perjalanan Selena ➔
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+        SECTION B: DATABASE VIEW (The Data Hub)
+        ========================================== -->
+            <section
+                id="view-database"
+                class="spa-view hidden transition-opacity duration-300"
+            >
+                <!-- Stats Header -->
+                <div class="mb-12 space-y-3 text-center sm:text-left">
+                    <div
+                        class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 bg-[#F5C564]/10 rounded-full text-[#1E3E3F] font-fredoka text-sm font-bold shadow-sm"
+                    >
+                        <span
+                            class="inline-block w-2.5 h-2.5 rounded-full bg-[#F5C564] animate-pulse"
+                        ></span>
+                        Matriks &amp; Riset Dampak Psikologis
+                    </div>
+                    <h3
+                        class="font-fredoka text-4xl font-extrabold text-[#1E3E3F]"
+                    >
+                        THE DATA HUB
+                    </h3>
+                    <p
+                        class="text-slate-500 text-lg max-w-3xl font-semibold leading-relaxed"
+                    >
+                        Menampilkan data kuantitatif dari <strong
+                            class="text-[#1E3E3F]"
+                            >Harvard STRIPED &amp; Michigan State University
+                            (2023)</strong
+                        >. Angka-angka ini mencerminkan sejauh mana manipulasi
+                        platform memengaruhi psikologi generasi muda.
+                    </p>
+                </div>
+
+                <!-- Big Statistic Cards (Clean Pastel Designs) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <!-- Card 1 -->
+                    <div
+                        class="bg-[#FFFDF9] rounded-3xl p-6 border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                    >
+                        <div class="space-y-4">
+                            <div
+                                class="flex justify-between items-center text-[#EE6C81]"
+                            >
+                                <span
+                                    class="font-fredoka text-xs font-bold tracking-wider uppercase"
+                                    >Valuasi Eksploitasi</span
+                                >
+                                <span class="text-lg">📈</span>
+                            </div>
+                            <h4
+                                class="font-fredoka text-4xl sm:text-5xl font-extrabold text-[#1E3E3F] tracking-tight"
+                            >
+                                $11 Miliar
+                            </h4>
+                            <h5
+                                class="font-fredoka text-md font-bold text-slate-700"
+                            >
+                                Ad Revenue dari Usia 0-17 Tahun
+                            </h5>
+                            <p
+                                class="text-slate-500 text-xs leading-relaxed font-semibold"
+                            >
+                                Estimasi pendapatan iklan tahunan raksasa
+                                teknologi yang diperoleh dengan menargetkan
+                                pengguna di bawah umur dengan memanfaatkan celah
+                                ketidakpuasan tubuh dan adiksi visual.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div
+                        class="bg-[#FFFDF9] rounded-3xl p-6 border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                    >
+                        <div class="space-y-4">
+                            <div
+                                class="flex justify-between items-center text-[#0D9488]"
+                            >
+                                <span
+                                    class="font-fredoka text-xs font-bold tracking-wider uppercase"
+                                    >Akselerasi Konten Buruk</span
+                                >
+                                <span class="text-lg">🧠</span>
+                            </div>
+                            <h4
+                                class="font-fredoka text-4xl sm:text-5xl font-extrabold text-[#1E3E3F] tracking-tight"
+                            >
+                                12x Lipat
+                            </h4>
+                            <h5
+                                class="font-fredoka text-md font-bold text-slate-700"
+                            >
+                                Hantaran Konten Self-Harm
+                            </h5>
+                            <p
+                                class="text-slate-500 text-xs leading-relaxed font-semibold"
+                            >
+                                Algoritma menyajikan konten diet ketat atau
+                                melukai diri sendiri 12x lebih cepat kepada akun
+                                remaja dengan estimasi self-esteem rendah dalam
+                                30 menit awal di platform tertentu.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div
+                        class="bg-[#FFFDF9] rounded-3xl p-6 border border-slate-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                    >
+                        <div class="space-y-4">
+                            <div
+                                class="flex justify-between items-center text-[#D97706]"
+                            >
+                                <span
+                                    class="font-fredoka text-xs font-bold tracking-wider uppercase"
+                                    >Efektivitas Proteksi</span
+                                >
+                                <span class="text-lg">🔓</span>
+                            </div>
+                            <h4
+                                class="font-fredoka text-4xl sm:text-5xl font-extrabold text-[#1E3E3F] tracking-tight"
+                            >
+                                99.2% Fail
+                            </h4>
+                            <h5
+                                class="font-fredoka text-md font-bold text-slate-700"
+                            >
+                                Kegagalan Batas Screen Time
+                            </h5>
+                            <p
+                                class="text-slate-500 text-xs leading-relaxed font-semibold"
+                            >
+                                Hampir seluruh minor dengan mudah dapat melewati
+                                pembatasan waktu layar formalitas karena tidak
+                                adanya audit algoritma eksternal yang diwajibkan
+                                secara tegas oleh hukum.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REGULATION TABLE -->
+                <div class="space-y-6">
+                    <div class="text-center sm:text-left space-y-1">
+                        <h4
+                            class="font-fredoka text-2xl font-extrabold text-[#1E3E3F] flex items-center justify-center sm:justify-start gap-2"
+                        >
+                            <span>⚖️</span> Matriks Regulasi &amp; Proteksi Mental
+                            Anak
+                        </h4>
+                        <p class="text-slate-500 text-sm font-semibold">
+                            4 strategi hukum utama di bumi untuk memaksa
+                            transparansi produk digital demi keselamatan mental.
+                        </p>
+                    </div>
+
+                    <!-- Minimalist Table with soft border-radius -->
+                    <div
+                        class="overflow-x-auto border border-slate-200/80 bg-[#FFFDF9] rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.02)] text-[#1E3E3F]"
+                    >
+                        <table
+                            class="w-full text-left border-collapse min-w-[800px]"
+                        >
+                            <thead>
+                                <tr
+                                    class="border-b border-slate-200 bg-[#1E3E3F] text-white font-fredoka text-sm"
+                                >
+                                    <th class="p-5 w-1/4">Strategi Hukum</th>
+                                    <th class="p-5 w-5/12"
+                                        >Cara Kerja &amp; Konsep Proteksi</th
+                                    >
+                                    <th class="p-5 w-1/3">Tantangan Regulasi</th
+                                    >
+                                </tr>
+                            </thead>
+                            <tbody
+                                class="font-nunito text-sm divide-y divide-slate-100"
+                            >
+                                <!-- Row 1 -->
+                                <tr
+                                    class="hover:bg-slate-50 transition-colors duration-150"
+                                >
+                                    <td
+                                        class="p-5 font-fredoka font-bold text-[#EE6C81]"
+                                        >Unfair Business Practices</td
+                                    >
+                                    <td
+                                        class="p-5 text-slate-600 leading-relaxed"
+                                    >
+                                        Menggugat manipulasi durasi layar demi
+                                        profit periklanan massal dengan
+                                        menyembunyikan dampak neuro-psikologis
+                                        adiksi pada remaja.
+                                    </td>
+                                    <td
+                                        class="p-5 text-[#EE6C81] font-bold leading-relaxed"
+                                    >
+                                        Membuktikan kausalitas langsung secara
+                                        medis dari paparan algoritma platform ke
+                                        penyakit mental secara klinis.
+                                    </td>
+                                </tr>
+                                <!-- Row 2 -->
+                                <tr
+                                    class="bg-slate-50/50 hover:bg-slate-50 transition-colors duration-150"
+                                >
+                                    <td
+                                        class="p-5 font-fredoka font-bold text-[#EE6C81]"
+                                        >Products Liability</td
+                                    >
+                                    <td
+                                        class="p-5 text-slate-600 leading-relaxed"
+                                    >
+                                        Menuntut desain produk yang cacat bawaan
+                                        (seperti fitur gulir tanpa
+                                        batas/infinite scroll) sebagai desain
+                                        berbahaya bagi anak di bawah umur.
+                                    </td>
+                                    <td
+                                        class="p-5 text-[#EE6C81] font-bold leading-relaxed"
+                                    >
+                                        Perlindungan Section 230 CDA yang
+                                        memberikan imunitas platform digital
+                                        dari konten pengguna.
+                                    </td>
+                                </tr>
+                                <!-- Row 3 -->
+                                <tr
+                                    class="hover:bg-slate-50 transition-colors duration-150"
+                                >
+                                    <td
+                                        class="p-5 font-fredoka font-bold text-[#EE6C81]"
+                                        >Public Nuisance Tort</td
+                                    >
+                                    <td
+                                        class="p-5 text-slate-600 leading-relaxed"
+                                    >
+                                        Gugatan masal oleh distrik sekolah
+                                        karena rusaknya ekosistem belajar yang
+                                        memaksa sekolah keluar uang besar
+                                        menangani krisis mental murid.
+                                    </td>
+                                    <td
+                                        class="p-5 text-[#EE6C81] font-bold leading-relaxed"
+                                    >
+                                        Definisi tradisional hukum mengenai
+                                        'gangguan publik' yang biasanya
+                                        memerlukan dampak fisik nyata di dunia
+                                        nyata.
+                                    </td>
+                                </tr>
+                                <!-- Row 4 -->
+                                <tr
+                                    class="bg-slate-50/50 hover:bg-slate-50 transition-colors duration-150"
+                                >
+                                    <td
+                                        class="p-5 font-fredoka font-bold text-[#EE6C81]"
+                                        >Mandatory Risk Audits</td
+                                    >
+                                    <td
+                                        class="p-5 text-slate-600 leading-relaxed"
+                                    >
+                                        Membuat regulasi ketat untuk mewajibkan
+                                        audit independen pihak ketiga terhadap
+                                        sistem algoritma feed guna mendeteksi
+                                        ancaman mental.
+                                    </td>
+                                    <td
+                                        class="p-5 text-[#EE6C81] font-bold leading-relaxed"
+                                    >
+                                        Lobi raksasa teknologi dengan argumen
+                                        kekayaan intelektual (trade secret) dan
+                                        kebebasan berbicara.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+        SECTION C: SCANNING VIEW (Digital Audit & Satellite Chat)
+        ========================================== -->
+            <section id="section-c" class="p-6 hidden">
+                <div
+                    class="bg-black/40 border border-[#1FF7A4]/30 rounded p-4 h-[400px] flex flex-col justify-between"
+                >
+                    <!-- Tempat menampilkan pesan chat -->
+                    <div
+                        id="chat-container"
+                        class="overflow-y-auto flex-1 space-y-4 mb-4 p-2 text-sm font-mono"
+                    >
+                        <div class="text-[#1FF7A4]">
+                            [SYSTEM]: Satellite link established. Awaiting
+                            input...
+                        </div>
+                    </div>
+
+                    <!-- Form Input Pesan -->
+                    <div class="flex gap-2">
+                        <input
+                            type="text"
+                            id="chat-input"
+                            class="flex-1 bg-black/60 border border-[#1FF7A4]/50 rounded px-3 py-2 text-[#1FF7A4] font-mono focus:outline-none focus:border-[#1FF7A4]"
+                            placeholder="Ketik perintah/pesan..."
+                        />
+                        <button
+                            id="send-btn"
+                            class="bg-[#1FF7A4]/20 border border-[#1FF7A4] text-[#1FF7A4] px-4 py-2 rounded hover:bg-[#1FF7A4]/40 font-mono"
+                            >SEND</button
+                        >
+                    </div>
+                </div>
+            </section>
+            <section
+                id="view-scanning"
+                class="spa-view hidden transition-opacity duration-300"
+            >
+                <!-- Audit Quiz Box Card -->
+                <div
+                    class="max-w-4xl mx-auto bg-[#FFFDF9] text-[#1E3E3F] border border-slate-200/80 rounded-[2.5rem] p-6 sm:p-10 relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.03)]"
+                >
+                    <!-- STATE 1: QUESTIONNAIRE BOX -->
+                    <div id="audit-questionnaire-state" class="space-y-8">
+                        <!-- Progress Stats -->
+                        <div class="space-y-3">
+                            <div
+                                class="flex justify-between items-center text-xs font-fredoka text-slate-500 uppercase tracking-wider font-bold"
+                            >
+                                <span id="audit-progress-text"
+                                    >PERTANYAAN 01 DARI 15</span
+                                >
+                                <span
+                                    id="audit-progress-percent"
+                                    class="text-[#EE6C81]">0% SELESAI</span
+                                >
+                            </div>
+                            <!-- Progress bar -->
+                            <div
+                                class="w-full h-3.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200"
+                            >
+                                <div
+                                    id="audit-progress-bar"
+                                    class="w-[6.6%] h-full bg-[#8AE3C2] transition-all duration-300"
+                                >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Question Box -->
+                        <div
+                            class="min-h-[130px] flex flex-col justify-center space-y-3"
+                        >
+                            <div
+                                class="inline-block text-[#EE6C81] font-fredoka text-xs font-bold tracking-wider uppercase"
+                                id="audit-category-label"
+                            >
+                                // KATEGORI: ADIKSI DOPAMIN
+                            </div>
+                            <h4
+                                id="audit-question-text"
+                                class="font-fredoka text-xl sm:text-2xl md:text-3xl font-extrabold text-[#1E3E3F] leading-snug"
+                            >
+                                Apakah Anda sering merasa cemas atau gelisah
+                                ketika terpisah dari ponsel Anda meskipun hanya
+                                beberapa menit?
+                            </h4>
+                        </div>
+
+                        <!-- Options Display (Horizontal Circles + Hover Label in the middle) -->
+                        <div class="space-y-8">
+                            <div class="flex flex-col items-center gap-6">
+                                <!-- Circular Likert Scale (1 to 5) -->
+                                <div
+                                    class="flex justify-center gap-3 sm:gap-6 flex-wrap"
+                                    id="audit-options-container"
+                                >
+                                    <!-- Circular rating buttons injected by JS -->
+                                </div>
+
+                                <!-- Large interactive explanation label -->
+                                <div
+                                    id="hover-label-display"
+                                    class="font-fredoka font-bold text-sm text-slate-500 transition-colors h-6 bg-slate-50 px-4 py-0.5 rounded-full border border-slate-100"
+                                >
+                                    Sentuh nomor untuk melihat deskripsi skala
+                                </div>
+                            </div>
+
+                            <!-- Submit Button (Only visible on final question and if answered) -->
+                            <div
+                                id="submit-btn-container"
+                                class="hidden text-center pt-4"
+                            >
+                                <button
+                                    id="audit-submit-btn"
+                                    class="px-8 py-4 bg-[#EE6C81] hover:bg-[#EE6C81]/90 text-white font-fredoka text-md font-bold rounded-2xl shadow-md transition-all duration-200 transform hover:scale-105"
+                                >
+                                    📊 Selesai &amp; Lihat Hasil Audit
+                                </button>
+                            </div>
+
+                            <div
+                                class="flex justify-between items-center pt-6 border-t border-slate-200 font-fredoka text-xs font-bold"
+                            >
+                                <button
+                                    id="audit-prev-btn"
+                                    class="px-5 py-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-800 rounded-full transition-colors disabled:opacity-40 disabled:pointer-events-none"
+                                >
+                                    ➔ KEMBALI
+                                </button>
+                                <span
+                                    class="text-slate-400 font-bold uppercase tracking-wider"
+                                    >MINDGUARD AUDIT LOGGER</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STATE 2: DIAGNOSTIC REPORT RESULTS (CONDITIONAL DISPLAY) -->
+                    <div id="audit-results-state" class="hidden space-y-10">
+                        <div class="text-center space-y-4">
+                            <div
+                                class="mx-auto w-16 h-16 rounded-full border-2 border-[#8AE3C2] flex items-center justify-center bg-[#8AE3C2]/15 animate-pulse"
+                                id="result-pulse-icon"
+                            >
+                                <span class="text-2xl">🌿</span>
+                            </div>
+                            <div class="space-y-1">
+                                <h4
+                                    class="font-fredoka text-3xl font-extrabold text-[#1E3E3F]"
+                                >
+                                    DIAGNOSIS TINGKAT RISIKO PIKIRAN
+                                </h4>
+                                <p
+                                    class="text-xs font-bold font-fredoka text-slate-500 uppercase tracking-widest"
+                                >
+                                    Laporan Evaluasi Kerentanan Kesehatan Mental
+                                    Digital
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Score Meter Panel -->
+                        <div
+                            class="border border-slate-200 bg-[#FAF5FF]/50 rounded-[2rem] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-around gap-8"
+                        >
+                            <div
+                                class="relative w-32 h-32 flex items-center justify-center shrink-0"
+                            >
+                                <!-- Circular Progress SVG -->
+                                <svg
+                                    class="w-full h-full transform -rotate-90"
+                                    viewBox="0 0 100 100"
+                                >
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="40"
+                                        stroke="#F1F5F9"
+                                        stroke-width="8"
+                                        fill="transparent"></circle>
+                                    <circle
+                                        id="result-svg-circle"
+                                        cx="50"
+                                        cy="50"
+                                        r="40"
+                                        stroke="#EE6C81"
+                                        stroke-width="8"
+                                        fill="transparent"
+                                        stroke-dasharray="251.2"
+                                        stroke-dashoffset="0"
+                                        transition="stroke-dashoffset 1s ease-out"
+                                        stroke-linecap="round"></circle>
+                                </svg>
+                                <div
+                                    class="absolute inset-0 flex flex-col items-center justify-center"
+                                >
+                                    <span
+                                        class="font-fredoka text-4xl font-extrabold text-[#1E3E3F]"
+                                        id="result-score-text">54</span
+                                    >
+                                    <span
+                                        class="text-[10px] font-fredoka font-bold text-slate-400"
+                                        >MAKS SKOR: 75</span
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="space-y-4 text-center md:text-left">
+                                <div
+                                    class="inline-block px-4 py-1.5 font-fredoka text-xs font-bold uppercase tracking-wide rounded-full border border-slate-200"
+                                    id="result-risk-badge"
+                                >
+                                    RISIKO TINGGI // TERPAPAR MANIPULASI KRONIS
+                                </div>
+                                <h5
+                                    class="font-fredoka text-xl font-bold text-[#1E3E3F]"
+                                    id="result-risk-title"
+                                >
+                                    Tingkat Kerentanan: Tinggi
+                                </h5>
+                                <p
+                                    class="text-slate-600 text-sm max-w-md leading-relaxed font-semibold"
+                                    id="result-risk-description"
+                                >
+                                    Struktur algorithms feed Anda secara agresif
+                                    mengkapitalisasi rasa cemas, citra tubuh
+                                    negatif, dan dorongan adiktif Anda. Profil
+                                    ini menunjukkan kerentanan mental yang
+                                    kritis terhadap asupan feed yang tidak
+                                    terkontrol.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Category Breakdown -->
+                        <div class="space-y-4">
+                            <h6
+                                class="font-fredoka text-sm font-bold text-[#1E3E3F] uppercase tracking-wider"
+                            >
+                                // DETAIl MATRIKS INDEKS PSIKOLOGIS
+                            </h6>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <!-- Index 1 -->
+                                <div
+                                    class="bg-white border border-slate-100 p-5 rounded-2xl space-y-2 shadow-sm"
+                                >
+                                    <div
+                                        class="flex justify-between font-fredoka text-xs font-bold"
+                                    >
+                                        <span class="text-slate-500"
+                                            >Perbandingan &amp; Citra Tubuh</span
+                                        >
+                                        <span
+                                            class="text-[#EE6C81]"
+                                            id="index-body-image-val">80%</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/40"
+                                    >
+                                        <div
+                                            id="index-body-image-bar"
+                                            class="h-full bg-[#F3A3B1] w-[80%] rounded-full"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Index 2 -->
+                                <div
+                                    class="bg-white border border-slate-100 p-5 rounded-2xl space-y-2 shadow-sm"
+                                >
+                                    <div
+                                        class="flex justify-between font-fredoka text-xs font-bold"
+                                    >
+                                        <span class="text-slate-500"
+                                            >Adiksi Umpan Dopamin (Scroll Tanpa
+                                            Batas)</span
+                                        >
+                                        <span
+                                            class="text-[#EE6C81]"
+                                            id="index-addiction-val">75%</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/40"
+                                    >
+                                        <div
+                                            id="index-addiction-bar"
+                                            class="h-full bg-[#EE6C81] w-[75%] rounded-full"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Index 3 -->
+                                <div
+                                    class="bg-white border border-slate-100 p-5 rounded-2xl space-y-2 shadow-sm"
+                                >
+                                    <div
+                                        class="flex justify-between font-fredoka text-xs font-bold"
+                                    >
+                                        <span class="text-slate-500"
+                                            >Bypass Proteksi Umur &amp;
+                                            Kamuflase</span
+                                        >
+                                        <span
+                                            class="text-[#EE6C81]"
+                                            id="index-covert-val">60%</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/40"
+                                    >
+                                        <div
+                                            id="index-covert-bar"
+                                            class="h-full bg-[#F5C564] w-[60%] rounded-full"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Index 4 -->
+                                <div
+                                    class="bg-white border border-slate-100 p-5 rounded-2xl space-y-2 shadow-sm"
+                                >
+                                    <div
+                                        class="flex justify-between font-fredoka text-xs font-bold"
+                                    >
+                                        <span class="text-slate-500"
+                                            >Tekanan Psikis &amp; Kecemasan
+                                            Sosial</span
+                                        >
+                                        <span
+                                            class="text-[#EE6C81]"
+                                            id="index-distress-val">90%</span
+                                        >
+                                    </div>
+                                    <div
+                                        class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200/40"
+                                    >
+                                        <div
+                                            id="index-distress-bar"
+                                            class="h-full bg-[#8AE3C2] w-[90%] rounded-full"
+                                        >
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Surgeon General Policy Recommendations -->
+                        <div
+                            class="border border-[#8AE3C2] bg-[#FAF5FF] p-6 sm:p-8 rounded-[2rem] space-y-6"
+                        >
+                            <div
+                                class="flex items-center gap-3 border-b border-slate-200 pb-3"
+                            >
+                                <span class="text-2xl">🛡️</span>
+                                <h6
+                                    class="font-fredoka text-md font-bold text-[#1E3E3F] tracking-wide"
+                                >
+                                    REKOMENDASI EKOSISTEM DIGITAL SEHAT (US
+                                    SURGEON GENERAL)
+                                </h6>
+                            </div>
+                            <ul
+                                class="font-nunito text-slate-700 text-sm space-y-3.5 pl-5 list-disc leading-relaxed"
+                            >
+                                <li>
+                                    <strong class="text-[#1E3E3F]"
+                                        >Safety-by-Design Default:</strong
+                                    > Menuntut platform digital menonaktifkan putar
+                                    otomatis dan scroll tanpa batas secara bawaan
+                                    pada pengguna di bawah 18 tahun.
+                                </li>
+                                <li>
+                                    <strong class="text-[#1E3E3F]"
+                                        >Audit Algoritma Independen:</strong
+                                    > Transparansi algoritma untuk memantau apakah
+                                    umpan balik adiktif secara agresif menargetkan
+                                    akun dengan kestabilan emosi lemah.
+                                </li>
+                                <li>
+                                    <strong class="text-[#1E3E3F]"
+                                        >Batas Usia Otentik:</strong
+                                    > Larangan monetisasi periklanan demografis/behavioral
+                                    yang menyasar kelemahan harga diri anak remaja
+                                    minor.
+                                </li>
+                                <li>
+                                    <strong class="text-[#1E3E3F]"
+                                        >Edukasi &amp; Batasan Mandiri:</strong
+                                    > Terapkan pola detox terstruktur, seperti bebas
+                                    gawai 1 jam sebelum tidur dan bebas ponsel di
+                                    ruang makan/tidur keluarga.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- EMERGENCY INTERVENTION PANEL (CONDITIONAL DISPLAY FOR STATE 3) -->
+                        <div
+                            id="emergency-intervention-panel"
+                            class="hidden border-4 border-[#EE6C81] bg-[#EE6C81]/10 p-6 sm:p-8 rounded-[2rem] space-y-4 text-center"
+                        >
+                            <div class="text-[#EE6C81] text-4xl animate-bounce">
+                                🚨
+                            </div>
+                            <h5
+                                class="font-fredoka text-lg sm:text-xl font-extrabold text-[#1E3E3F] leading-relaxed"
+                            >
+                                🚨 BUTUH BANTUAN SEGERA? HUBUNGI LAYANAN DARURAT
+                                MEDIS &amp; PSIKOLOGIS NASIONAL: CALL CENTER 119
+                            </h5>
+                            <div class="pt-2">
+                                <a
+                                    href="tel:119"
+                                    class="inline-block px-8 py-4 bg-[#EE6C81] hover:bg-[#EE6C81]/90 text-white font-fredoka text-md font-bold rounded-2xl shadow-md transition-all duration-200 transform hover:scale-105"
+                                >
+                                    📞 Panggil Layanan Darurat 119
+                                </a>
+                                <p
+                                    class="text-xs text-slate-500 font-semibold mt-2.5"
+                                >
+                                    Layanan ini gratis, rahasia, dan tersedia
+                                    24/7 untuk mendampingi masa kritis Anda.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Warm transition message and conditional chatbot wrapper -->
+                        <div
+                            class="bg-[#FFFDF9] border border-slate-200 p-6 sm:p-8 rounded-[2rem] text-center space-y-4 shadow-sm"
+                            id="chatbot-unlocked-transition"
+                        >
+                            <div class="text-[#EE6C81] text-3xl">🕊️</div>
+                            <p
+                                class="font-fredoka text-md sm:text-lg text-[#1E3E3F] font-bold max-w-xl mx-auto leading-relaxed"
+                                id="results-transition-text"
+                            >
+                                Terima kasih telah jujur pada dirimu sendiri.
+                                Sebagai ruang aman untuk meredakan kecemasanmu,
+                                akses pintu darurat menuju Mindguard AI kini
+                                terbuka untukmu.
+                            </p>
+                        </div>
+
+                        <!-- CHATBOT INTEGRATION CONTAINER (CONDITIONAL CHATBOX) -->
+                        <div
+                            class="bg-white border border-slate-100 rounded-[2.5rem] p-6 sm:p-10 relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.03)] hidden"
+                            id="chatbot-frame-container"
+                        >
+                            <!-- Chatbot Header -->
+                            <div
+                                class="flex flex-col md:flex-row justify-between items-center gap-4 border-b border-slate-100 pb-6 mb-6"
+                            >
+                                <div class="space-y-1 text-center md:text-left">
+                                    <h4
+                                        class="font-fredoka text-2xl font-extrabold text-[#1E3E3F] flex items-center gap-2 justify-center md:justify-start"
+                                        id="chatbot-title-text"
+                                    >
+                                        🚀 Mindguard AI Space
+                                    </h4>
+                                    <p
+                                        class="text-slate-500 text-xs sm:text-sm font-semibold"
+                                        id="chatbot-subtitle-text"
+                                    >
+                                        Sesi ini khusus dibuka untuk membantu
+                                        melatih dan menguji ketahanan fokus
+                                        mental Anda.
+                                    </p>
+                                </div>
+                                <a
+                                    href="https://mindguard-ai-han.streamlit.app/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="px-5 py-3 bg-[#EE6C81] hover:bg-[#EE6C81]/90 text-white font-fredoka text-xs font-bold rounded-full shadow-sm hover:scale-105 active:scale-95 transition-all flex items-center gap-2 w-full md:w-auto justify-center"
+                                >
+                                    Hubungi Satelit Pendengar (Curhat via
+                                    Mindguard AI) ➔
+                                </a>
+                            </div>
+
+                            <!-- Chatbot embedded Iframe -->
+                            <div
+                                class="relative w-full h-[550px] border border-slate-200 rounded-3xl overflow-hidden bg-slate-50 shadow-inner"
+                            >
+                                <iframe
+                                    src="https://mindguard-ai-han.streamlit.app/?embed=true"
+                                    class="w-full h-full border-none"
+                                    allow="microphone; camera"></iframe>
+                            </div>
+                        </div>
+
+                        <!-- Reset button to redo scanning -->
+                        <div class="text-center pt-4">
+                            <button
+                                id="audit-reset-btn"
+                                class="px-8 py-3.5 border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-800 font-fredoka text-xs font-bold uppercase rounded-2xl transition-all duration-200"
+                            >
+                                🔄 Ulangi Skrining Mandiri
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- CASE DETAILED MODAL DIALOG (HIDDEN) -->
+        <div
+            id="case-modal"
+            class="fixed inset-0 bg-[#1E3E3F]/60 flex items-center justify-center p-4 z-50 hidden backdrop-blur-sm"
+        >
+            <div
+                class="border border-slate-200 bg-[#FFFDF9] text-[#1E3E3F] max-w-2xl w-full rounded-[2rem] overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.1)] transition-all"
+            >
+                <!-- Modal Title Bar -->
+                <div
+                    class="bg-[#FAF5FF] border-b border-slate-200 px-6 py-4 flex justify-between items-center"
+                >
+                    <span
+                        class="font-fredoka font-bold text-xs text-slate-500"
+                        id="modal-dossier-id"
+                        >LAPORAN EVALUASI KASUS REMaja</span
+                    >
+                    <button
+                        id="modal-close-header"
+                        class="text-slate-400 hover:text-slate-900 font-bold text-lg"
+                        >✖</button
+                    >
+                </div>
+
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div class="space-y-1">
+                        <h5
+                            class="font-fredoka text-3xl font-extrabold text-[#1E3E3F]"
+                            id="modal-title"
+                        >
+                            Alexis Spence
+                        </h5>
+                        <p
+                            class="text-xs font-bold font-fredoka text-[#EE6C81] uppercase tracking-wider"
+                            id="modal-age"
+                        >
+                            UMUR: 11 TAHUN
+                        </p>
+                    </div>
+
+                    <div
+                        class="border-y border-slate-100 py-4 font-nunito text-sm space-y-3"
+                    >
+                        <div class="flex justify-between">
+                            <span class="text-slate-500 font-bold"
+                                >Mekanisme Hambatan:</span
+                            >
+                            <span
+                                id="modal-mechanism"
+                                class="text-[#EE6C81] font-bold"
+                                >Cacat Desain Algoritma Rekomendasi Diet</span
+                            >
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500 font-bold"
+                                >Sumber Informasi:</span
+                            >
+                            <span
+                                id="modal-source"
+                                class="text-slate-800 font-medium font-semibold"
+                                >Litigasi Hukum &amp; RisetSTRIPED</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h6
+                            class="font-fredoka text-sm font-bold text-[#EE6C81]"
+                        >
+                            // KRONOLOGIS PSIKOLOGIS
+                        </h6>
+                        <p
+                            class="text-slate-600 text-sm leading-relaxed text-justify font-nunito font-semibold"
+                            id="modal-chronology"
+                        >
+                            Kronologis kasus...
+                        </p>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button
+                            id="modal-close-btn"
+                            class="px-6 py-3 bg-[#1E3E3F] hover:bg-[#2A5455] text-white font-fredoka text-xs font-bold rounded-2xl shadow-sm"
+                        >
+                            Selesai Membaca
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MENTAL HEALTH TICKER FOOTER -->
+        <footer
+            class="bg-white border-t border-slate-200/80 py-4 overflow-hidden select-none"
+        >
+            <!-- Walking marquee -->
+            <div
+                class="ticker-track text-sm font-fredoka tracking-wide text-[#1E3E3F] font-bold"
+            >
+                <span class="px-10 flex items-center gap-2"
+                    >🕊️ <em
+                        >"Pikiranmu berharga, jangan biarkan algoritma mendikte
+                        kebahagiaanmu. Mari ambil kendali bersama Mindguard."</em
+                    ></span
+                >
+                <span class="px-10 flex items-center gap-2"
+                    >🌱 <em
+                        >"Pikiranmu berharga, jangan biarkan algoritma mendikte
+                        kebahagiaanmu. Mari ambil kendali bersama Mindguard."</em
+                    ></span
+                >
+                <span class="px-10 flex items-center gap-2"
+                    >🕊️ <em
+                        >"Pikiranmu berharga, jangan biarkan algoritma mendikte
+                        kebahagiaanmu. Mari ambil kendali bersama Mindguard."</em
+                    ></span
+                >
+                <span class="px-10 flex items-center gap-2"
+                    >🌱 <em
+                        >"Pikiranmu berharga, jangan biarkan algoritma mendikte
+                        kebahagiaanmu. Mari ambil kendali bersama Mindguard."</em
+                    ></span
+                >
+            </div>
+
+            <!-- Standard Copyright footer -->
+            <div
+                class="max-w-6xl mx-auto px-4 mt-4 pt-4 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] font-fredoka text-slate-400"
+            >
+                <p>
+                    &copy; 2026 PLATFORM MINDGUARD INDONESIA. SEMUA HAK
+                    DILINDUNGI. EVALUASI DAN PROTEKSI PSIKOLOGIS MAKSIMAL.
+                </p>
+                <div class="flex gap-6">
+                    <span>REKOMENDASI: US SURGEON GENERAL</span>
+                    <span>DATA: HARVARD STRIPED (2023)</span>
+                </div>
+            </div>
+        </footer>
+
+        <!-- CLIENT INTERACTIVE SCRIPTS -->
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", () => {
+                // WEB AUDIO SYNTHESIZER FOR DIGITAL SFX (Kurzgesagt game-like bubbles and chimes)
+                const audioCtx = new (
+                    window.AudioContext || window.webkitAudioContext
+                )();
+
+                function playSound(type) {
+                    if (audioCtx.state === "suspended") {
+                        audioCtx.resume();
+                    }
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+
+                    const now = audioCtx.currentTime;
+
+                    if (type === "click") {
+                        // Soft bubble pop sound
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(400, now);
+                        osc.frequency.exponentialRampToValueAtTime(
+                            1000,
+                            now + 0.08,
+                        );
+                        gain.gain.setValueAtTime(0.03, now);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            now + 0.08,
+                        );
+                        osc.start();
+                        osc.stop(now + 0.08);
+                    } else if (type === "success") {
+                        // A pleasant harmonic celestial chime
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(523.25, now); // C5
+                        osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+                        osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+                        gain.gain.setValueAtTime(0.04, now);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            now + 0.5,
+                        );
+                        osc.start();
+                        osc.stop(now + 0.5);
+                    } else if (type === "hover") {
+                        // Extremely subtle bubble tick
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(800, now);
+                        gain.gain.setValueAtTime(0.003, now);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.0001,
+                            now + 0.03,
+                        );
+                        osc.start();
+                        osc.stop(now + 0.03);
+                    } else if (type === "reset") {
+                        // Soft slide down
+                        osc.type = "sine";
+                        osc.frequency.setValueAtTime(300, now);
+                        osc.frequency.exponentialRampToValueAtTime(
+                            150,
+                            now + 0.25,
+                        );
+                        gain.gain.setValueAtTime(0.03, now);
+                        gain.gain.exponentialRampToValueAtTime(
+                            0.001,
+                            now + 0.25,
+                        );
+                        osc.start();
+                        osc.stop(now + 0.25);
+                    }
+                }
+
+                // REALTIME CLOCK LOGGER
+                function updateClock() {
+                    const now = new Date();
+                    const clock = document.getElementById("realtime-clock");
+                    if (clock) {
+                        clock.textContent =
+                            "SYS_TIME: " +
+                            now
+                                .toISOString()
+                                .replace("T", " ")
+                                .substring(0, 19) +
+                            " UTC";
+                    }
+                }
+                setInterval(updateClock, 1000);
+                updateClock();
+
+                // CUSTOM CURSOR LOGIC (Butterfly default / Welcome hand on hover)
+                const cursor = document.getElementById("cursor-custom");
+                let mouseX = 0,
+                    mouseY = 0;
+                let cursorX = 0,
+                    cursorY = 0;
+
+                const CURSOR_SVG = {
+                    // Default: Cute butterfly SVG (growth & transformation)
+                    butterfly: `<svg width="28" height="28" viewBox="0 0 24 24" fill="#EE6C81" class="drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)]"><path d="M12 10C11.5 6 8 4 6 6 C4 8 6 11.5 10 12 C6 12.5 4 16 6 18 C8 20 11.5 18 12 14 C12.5 18 16 20 18 18 C20 16 18 12.5 14 12 C18 11.5 20 8 18 6 C16 4 12.5 6 12 10 Z" /><circle cx="12" cy="12" r="1.5" fill="#1E3E3F" /></svg>`,
+                    // Hover: Cute open welcoming hand (acceptance)
+                    hand: `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#1E3E3F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="drop-shadow-[0_2px_5px_rgba(30,62,63,0.25)]"><path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v5" /><path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v6" /><path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8.5" /><path d="M6 14v.5a7 7 0 0 0 11.24 5.6L18 19V11a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2" fill="#F5C564" /></svg>`,
+                };
+
+                window.addEventListener("mousemove", (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+
+                function lerpCursor() {
+                    cursorX += (mouseX - cursorX) * 0.18;
+                    cursorY += (mouseY - cursorY) * 0.18;
+                    if (cursor) {
+                        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0)`;
+                    }
+                    requestAnimationFrame(lerpCursor);
+                }
+                requestAnimationFrame(lerpCursor);
+
+                // Function to set cursor icon dynamically
+                function setCursorType(type) {
+                    if (cursor) {
+                        cursor.innerHTML = CURSOR_SVG[type];
+                    }
+                }
+                setCursorType("butterfly");
+
+                // SPA TAB SWITCHING LOGIC
+                const tabButtons = document.querySelectorAll(".nav-tab-btn");
+                const views = document.querySelectorAll(".spa-view");
+                const threatIndicator =
+                    document.getElementById("threat-indicator");
+
+                tabButtons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const target = btn.getAttribute("data-tab");
+                        playSound("click");
+
+                        // Update Tab Navigation Active Styling
+                        tabButtons.forEach((tb) => {
+                            if (tb.getAttribute("data-tab") === target) {
+                                tb.className =
+                                    "nav-tab-btn px-5 py-2 rounded-full font-fredoka text-sm font-bold tracking-wide transition-all duration-300 bg-[#1E3E3F] text-white";
+                            } else {
+                                tb.className =
+                                    "nav-tab-btn px-5 py-2 rounded-full font-fredoka text-sm font-bold tracking-wide transition-all duration-300 text-slate-600 hover:text-[#1E3E3F] hover:bg-white/60";
+                            }
+                        });
+
+                        // Hide all views, display the selected view
+                        views.forEach((v) => {
+                            if (v.id === `view-${target}`) {
+                                v.classList.remove("hidden");
+                                v.classList.add("block");
+                            } else {
+                                v.classList.remove("block");
+                                v.classList.add("hidden");
+                            }
+                        });
+
+                        // Update system status logging based on active tab
+                        if (target === "home") {
+                            if (threatIndicator) {
+                                threatIndicator.textContent =
+                                    "STATUS: PIKIRAN STABIL";
+                                threatIndicator.className =
+                                    "text-[#8AE3C2] font-bold";
+                            }
+                        } else if (target === "database") {
+                            if (threatIndicator) {
+                                threatIndicator.textContent =
+                                    "STATUS: MEMPELAJARI INFOGRAFIS MENTAL";
+                                threatIndicator.className =
+                                    "text-[#F5C564] font-bold";
+                            }
+                        } else {
+                            if (threatIndicator) {
+                                threatIndicator.textContent =
+                                    "STATUS: SKRINING PSIKOLOGIS AKTIF";
+                                threatIndicator.className =
+                                    "text-[#EE6C81] font-bold animate-pulse";
+                            }
+                        }
+                    });
+
+                    // Play hover sounds on tabs
+                    btn.addEventListener("mouseenter", () =>
+                        playSound("hover"),
+                    );
+                });
+
+                // CURSOR HOVER INTERACTIONS (Hand shape on interactive items)
+                function setupHoverTriggers() {
+                    const interactives = document.querySelectorAll(
+                        "a, button, [role='button'], input, th, select, textarea, .interactive-element, .case-expand-btn",
+                    );
+                    interactives.forEach((el) => {
+                        // Remove previous listeners to avoid duplicates
+                        el.removeEventListener("mouseenter", handleMouseEnter);
+                        el.removeEventListener("mouseleave", handleMouseLeave);
+
+                        el.addEventListener("mouseenter", handleMouseEnter);
+                        el.addEventListener("mouseleave", handleMouseLeave);
+                    });
+                }
+
+                function handleMouseEnter() {
+                    playSound("hover");
+                    setCursorType("hand");
+                }
+
+                function handleMouseLeave() {
+                    setCursorType("butterfly");
+                }
+
+                // Initial setup of cursor hover listeners
+                setupHoverTriggers();
+
+                // Observe dynamic elements to re-bind hover events (useful for quiz options rendering)
+                const observer = new MutationObserver(() => {
+                    setupHoverTriggers();
+                });
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                });
+
+                // CASE LOG DETAILS DATABASE ( Alexis & Selena )
+                const CASES_DB = {
+                    alexis: {
+                        id: "LITIGASI HUKUM SPENCE V. META & INSTAGRAM // PERSPEKTIF KLINIS",
+                        title: "Alexis Spence",
+                        age: "UMUR: 11 TAHUN (SAAT PAPARAN PERTAMA)",
+                        mechanism: "Cacat Desain Algoritma Rekomendasi Diet",
+                        source: "Social Media Victims Law Center & Pengadilan California",
+                        chronology:
+                            "Alexis Spence pertama kali membuat akun Instagram di umur 11 tahun tanpa sepengetahuan orang tuanya, menyembunyikannya di dalam folder berikon kalkulator palsu. Algoritma pendeteksi atensi dengan cepat mendeteksi kecemasan dirinya dan membanjirinya dengan konten diet ekstrem (seperti 'corpse bride diet' <300 kalori/hari). Ini memicu anoreksia parah, depresi klinis akut, dan percobaan menyakiti diri sendiri hingga harus dilarikan ke rumah sakit. Tindakan kamuflase aplikasi kalkulator tersebut merupakan manifestasi klinis adiksi demi melindungi sumber kepuasan instan otaknya.",
+                    },
+                    selena: {
+                        id: "GUGATAN KELUARGA RODRIGUEZ V. META & SNAP // PERSPEKTIF NEUROLOGIS",
+                        title: "Selena Rodriguez",
+                        age: "UMUR: 11 TAHUN (WAFAT 2021)",
+                        mechanism:
+                            "Loop Umpan Dopamin & Kegagalan Proteksi Usia",
+                        source: "Laporan Gugatan Resmi Mahkamah Agung California",
+                        chronology:
+                            "Selena Rodriguez terjerat siklus kecanduan media sosial visual secara parah saat pandemi melanda di usia 11 tahun. Algoritma yang haus atensi terus menyodorkan feed kecemasan citra diri (body image) dan konten self-harm demi mempertahankan atensi layar. Ketidakseimbangan zat kimia otak akibat adiksi likes/followers membuatnya depresi akut, insomnia parah, dan delusi. Ketika orang tuanya menyita perangkatnya, ia menunjukkan gejala kepanikan yang setara dengan penarikan zat adiktif (withdrawal symptoms). Selena mengakhiri hidupnya secara tragis di tahun 2021.",
+                    },
+                };
+
+                const caseModal = document.getElementById("case-modal");
+                const modalDossierId =
+                    document.getElementById("modal-dossier-id");
+                const modalTitle = document.getElementById("modal-title");
+                const modalAge = document.getElementById("modal-age");
+                const modalMechanism =
+                    document.getElementById("modal-mechanism");
+                const modalSource = document.getElementById("modal-source");
+                const modalChronology =
+                    document.getElementById("modal-chronology");
+
+                const caseExpandButtons =
+                    document.querySelectorAll(".case-expand-btn");
+                caseExpandButtons.forEach((btn) => {
+                    btn.addEventListener("click", () => {
+                        const caseKey = btn.getAttribute("data-case");
+                        const data = CASES_DB[caseKey];
+                        if (data) {
+                            playSound("click");
+                            modalDossierId.textContent = data.id;
+                            modalTitle.textContent = data.title;
+                            modalAge.textContent = data.age;
+                            modalMechanism.textContent = data.mechanism;
+                            modalSource.textContent = data.source;
+                            modalChronology.textContent = data.chronology;
+
+                            caseModal.classList.remove("hidden");
+                        }
+                    });
+                });
+
+                // Close Modal Logic
+                const closeModal = () => {
+                    playSound("click");
+                    caseModal.classList.add("hidden");
+                };
+                document
+                    .getElementById("modal-close-header")
+                    .addEventListener("click", closeModal);
+                document
+                    .getElementById("modal-close-btn")
+                    .addEventListener("click", closeModal);
+                caseModal.addEventListener("click", (e) => {
+                    if (e.target === caseModal) closeModal();
+                });
+
+                // ==========================================
+                // 15-POINT DIGITAL RISK AUDIT CODE
+                // ==========================================
+                const QUESTIONS = [
+                    {
+                        id: 1,
+                        category: "ADIKSI DOPAMIN",
+                        text: "Apakah Anda sering merasa cemas atau gelisah ketika terpisah dari ponsel Anda meskipun hanya beberapa menit?",
+                    },
+                    {
+                        id: 2,
+                        category: "CITRA TUBUH",
+                        text: "Seberapa sering Anda membandingkan pencapaian atau penampilan diri Anda dengan orang lain di media sosial secara negatif?",
+                    },
+                    {
+                        id: 3,
+                        category: "BYPASS PROTEKSI",
+                        text: "Apakah Anda merasa perlu mengunggah sesuatu untuk mendapatkan validasi (seperti likes) guna meningkatkan rasa percaya diri Anda?",
+                    },
+                    {
+                        id: 4,
+                        category: "ADIKSI DOPAMIN",
+                        text: "Apakah fitur 'Infinite Scroll' membuat Anda sering begadang dan mengganggu jam tidur biologis Anda?",
+                    },
+                    {
+                        id: 5,
+                        category: "TEKANAN PSIKIS",
+                        text: "Seberapa sering Anda merasa diabaikan oleh lingkungan nyata karena terlalu asyik memperhatikan layar?",
+                    },
+                    {
+                        id: 6,
+                        category: "ADIKSI DOPAMIN",
+                        text: "Apakah Anda menyembunyikan waktu pemakaian gawai Anda karena merasa malu atau bersalah?",
+                    },
+                    {
+                        id: 7,
+                        category: "CITRA TUBUH",
+                        text: "Seberapa sering feed media sosial memperburuk persepsi Anda tentang penampilan fisik Anda (body image dysmorphia)?",
+                    },
+                    {
+                        id: 8,
+                        category: "TEKANAN PSIKIS",
+                        text: "Apakah Anda merasa cemas, takut tertinggal (FOMO), atau merasa terasing jika tidak mengecek notifikasi secara berkala?",
+                    },
+                    {
+                        id: 9,
+                        category: "TEKANAN PSIKIS",
+                        text: "Apakah Anda merasa algoritma menyajikan konten yang memicu amarah atau kesedihan untuk membuat Anda tetap bertahan di aplikasi?",
+                    },
+                    {
+                        id: 10,
+                        category: "ADIKSI DOPAMIN",
+                        text: "Apakah Anda sering mengabaikan tanggung jawab nyata (seperti belajar atau bekerja) demi terus menggulir feed?",
+                    },
+                    {
+                        id: 11,
+                        category: "TEKANAN PSIKIS",
+                        text: "Seberapa sering Anda melihat konten diet ekstrem atau self-harm secara tidak sengaja di halaman rekomendasi Anda?",
+                    },
+                    {
+                        id: 12,
+                        category: "TEKANAN PSIKIS",
+                        text: "Apakah Anda merasa interaksi digital membuat Anda merasa lebih terisolasi daripada terhubung secara nyata?",
+                    },
+                    {
+                        id: 13,
+                        category: "TEKANAN PSIKIS",
+                        text: "Apakah suasana hati (mood) Anda sangat dipengaruhi oleh pasang surut interaksi di media sosial hari itu?",
+                    },
+                    {
+                        id: 14,
+                        category: "ADIKSI DOPAMIN",
+                        text: "Apakah Anda merasa lelah secara emosional (digital burnout) namun tetap kesulitan menutup aplikasi media sosial Anda?",
+                    },
+                    {
+                        id: 15,
+                        category: "BYPASS PROTEKSI",
+                        text: "Apakah Anda memanipulasi informasi profil atau usia Anda untuk mengakses fitur platform yang sebenarnya memicu kecemasan Anda?",
+                    },
+                ];
+
+                let currentQuestionIdx = 0;
+                const answers = Array(QUESTIONS.length).fill(0);
+
+                const questText = document.getElementById(
+                    "audit-question-text",
+                );
+                const categoryLabel = document.getElementById(
+                    "audit-category-label",
+                );
+                const progressText = document.getElementById(
+                    "audit-progress-text",
+                );
+                const progressPercent = document.getElementById(
+                    "audit-progress-percent",
+                );
+                const progressBar =
+                    document.getElementById("audit-progress-bar");
+                const prevBtn = document.getElementById("audit-prev-btn");
+                const optionsContainer = document.getElementById(
+                    "audit-options-container",
+                );
+                const hoverLabelDisplay = document.getElementById(
+                    "hover-label-display",
+                );
+                const submitBtnContainer = document.getElementById(
+                    "submit-btn-container",
+                );
+                const auditSubmitBtn =
+                    document.getElementById("audit-submit-btn");
+
+                const questionnaireState = document.getElementById(
+                    "audit-questionnaire-state",
+                );
+                const resultsState = document.getElementById(
+                    "audit-results-state",
+                );
+
+                // RENDER ACTIVE QUESTION
+                function renderQuestion() {
+                    const question = QUESTIONS[currentQuestionIdx];
+                    if (!question) return;
+
+                    // Category styling helper
+                    categoryLabel.textContent = `// KATEGORI: ${question.category}`;
+
+                    // Set Question Text
+                    questText.textContent = question.text;
+
+                    // Update Progress text
+                    const currentNum = currentQuestionIdx + 1;
+                    progressText.textContent = `Pertanyaan ${currentNum.toString().padStart(2, "0")} dari ${QUESTIONS.length}`;
+
+                    // Progress Bar and Percent
+                    const percentVal = Math.round(
+                        (currentQuestionIdx / QUESTIONS.length) * 100,
+                    );
+                    progressPercent.textContent = `${percentVal}% Selesai`;
+                    progressBar.style.width = `${(currentNum / QUESTIONS.length) * 100}%`;
+
+                    // Back Button visibility
+                    prevBtn.disabled = currentQuestionIdx === 0;
+
+                    // Hide submit container by default
+                    submitBtnContainer.classList.add("hidden");
+
+                    // Render 5 Rating Circles
+                    optionsContainer.innerHTML = "";
+
+                    const ratingLabels = [
+                        "Sangat Jarang / Tidak Pernah",
+                        "Jarang",
+                        "Kadang-kadang",
+                        "Sering",
+                        "Sangat Sering / Selalu",
+                    ];
+
+                    const colorThemes = [
+                        "hover:bg-[#8AE3C2]/20 hover:border-[#0D9488]",
+                        "hover:bg-[#8AE3C2]/20 hover:border-[#0D9488]",
+                        "hover:bg-[#F5C564]/20 hover:border-[#D97706]",
+                        "hover:bg-[#F3A3B1]/20 hover:border-[#EE6C81]",
+                        "hover:bg-[#EE6C81]/20 hover:border-[#EE6C81]",
+                    ];
+
+                    const activeThemes = [
+                        "bg-[#8AE3C2]/40 border-[#0D9488] text-[#1E3E3F] scale-110",
+                        "bg-[#8AE3C2]/40 border-[#0D9488] text-[#1E3E3F] scale-110",
+                        "bg-[#F5C564]/40 border-[#D97706] text-[#1E3E3F] scale-110",
+                        "bg-[#F3A3B1]/40 border-[#EE6C81] text-[#1E3E3F] scale-110",
+                        "bg-[#EE6C81]/40 border-[#EE6C81] text-white scale-110",
+                    ];
+
+                    for (let i = 1; i <= 5; i++) {
+                        const btn = document.createElement("button");
+                        const isSelected = answers[currentQuestionIdx] === i;
+
+                        btn.className = `w-14 h-14 rounded-full border-3 border-[#1E3E3F] flex items-center justify-center text-lg font-bold font-fredoka transition-all duration-200 ${
+                            isSelected
+                                ? activeThemes[i - 1]
+                                : `bg-[#FFFDF9] ${colorThemes[i - 1]} text-[#1E3E3F]`
+                        }`;
+
+                        btn.innerHTML = `${i}`;
+
+                        // Hover shows descriptions
+                        btn.addEventListener("mouseenter", () => {
+                            hoverLabelDisplay.textContent = `Skala ${i}: ${ratingLabels[i - 1]}`;
+                            hoverLabelDisplay.className =
+                                "font-fredoka font-bold text-sm text-[#1E3E3F] transition-colors h-6 bg-[#FAF5FF] px-4 py-0.5 rounded-full border border-[#1E3E3F]/10";
+                        });
+
+                        btn.addEventListener("mouseleave", () => {
+                            hoverLabelDisplay.textContent =
+                                "Sentuh nomor untuk melihat deskripsi skala";
+                            hoverLabelDisplay.className =
+                                "font-fredoka font-bold text-sm text-slate-500 transition-colors h-6 bg-slate-50 px-4 py-0.5 rounded-full border border-slate-100";
+                        });
+
+                        // Click logic
+                        btn.addEventListener("click", () => {
+                            answers[currentQuestionIdx] = i;
+                            playSound("click");
+
+                            setTimeout(() => {
+                                if (currentQuestionIdx < QUESTIONS.length - 1) {
+                                    currentQuestionIdx++;
+                                    renderQuestion();
+                                } else {
+                                    // Redraw to show selection on 15th question, then show submit button
+                                    renderQuestion();
+                                    submitBtnContainer.classList.remove(
+                                        "hidden",
+                                    );
+                                }
+                            }, 250);
+                        });
+
+                        optionsContainer.appendChild(btn);
+                    }
+
+                    // If it's the last question and it has been answered, make sure to show submit button
+                    if (
+                        currentQuestionIdx === QUESTIONS.length - 1 &&
+                        answers[currentQuestionIdx] !== 0
+                    ) {
+                        submitBtnContainer.classList.remove("hidden");
+                    }
+                }
+
+                // SUBMIT BUTTON EVENT (Fase 1 to Fase 2 transition)
+                auditSubmitBtn.addEventListener("click", () => {
+                    calculateAuditResults();
+                });
+
+                // PREVIOUS BUTTON EVENT
+                prevBtn.addEventListener("click", () => {
+                    if (currentQuestionIdx > 0) {
+                        playSound("click");
+                        currentQuestionIdx--;
+                        renderQuestion();
+                    }
+                });
+
+                // CALCULATE RESULT SCORING & UNLOCK CHATBOT (STRICT CONDITIONAL LOGIC)
+                function calculateAuditResults() {
+                    playSound("success");
+
+                    // Update status indicator
+                    if (threatIndicator) {
+                        threatIndicator.textContent =
+                            "STATUS: MEREKAP HASIL AUDIT";
+                        threatIndicator.className =
+                            "text-[#EE6C81] font-bold animate-pulse";
+                    }
+
+                    // Compute scores
+                    const totalScore = answers.reduce(
+                        (sum, score) => sum + score,
+                        0,
+                    );
+
+                    // Categories maps
+                    let bodyImageScore = 0; // max 20 (Q2, Q7, Q11, Q14)
+                    let addictionScore = 0; // max 25 (Q1, Q4, Q6, Q10, Q14)
+                    let covertScore = 0; // max 10 (Q3, Q15)
+                    let distressScore = 0; // max 20 (Membahas Q5, Q8, Q9, Q12, Q13)
+
+                    QUESTIONS.forEach((q, idx) => {
+                        const score = answers[idx];
+                        if (q.category === "CITRA TUBUH")
+                            bodyImageScore += score;
+                        else if (q.category === "ADIKSI DOPAMIN")
+                            addictionScore += score;
+                        else if (q.category === "BYPASS PROTEKSI")
+                            covertScore += score;
+                        else if (q.category === "TEKANAN PSIKIS")
+                            distressScore += score;
+                    });
+
+                    // Compute percentages dynamically
+                    const bodyImagePct = Math.round(
+                        (bodyImageScore / 15) * 100,
+                    );
+                    const addictionPct = Math.round(
+                        (addictionScore / 25) * 100,
+                    );
+                    const covertPct = Math.round((covertScore / 10) * 100);
+                    const distressPct = Math.round((distressScore / 25) * 100);
+
+                    // Update Category Details on DOM
+                    document.getElementById(
+                        "index-body-image-val",
+                    ).textContent = `${Math.min(bodyImagePct, 100)}%`;
+                    document.getElementById(
+                        "index-body-image-bar",
+                    ).style.width = `${Math.min(bodyImagePct, 100)}%`;
+
+                    document.getElementById("index-addiction-val").textContent =
+                        `${Math.min(addictionPct, 100)}%`;
+                    document.getElementById("index-addiction-bar").style.width =
+                        `${Math.min(addictionPct, 100)}%`;
+
+                    document.getElementById("index-covert-val").textContent =
+                        `${Math.min(covertPct, 100)}%`;
+                    document.getElementById("index-covert-bar").style.width =
+                        `${Math.min(covertPct, 100)}%`;
+
+                    document.getElementById("index-distress-val").textContent =
+                        `${Math.min(distressPct, 100)}%`;
+                    document.getElementById("index-distress-bar").style.width =
+                        `${Math.min(distressPct, 100)}%`;
+
+                    // Risk level determination
+                    let riskBadgeText = "";
+                    let riskTitleText = "";
+                    let riskDescText = "";
+                    let riskColorClass = "";
+                    let riskGlowClass = "";
+                    let threatLevel = "";
+
+                    if (totalScore <= 35) {
+                        riskBadgeText = "RISIKO RENDAH // DIGITAL RESILIENT";
+                        riskTitleText =
+                            "Kestabilan Kognitif: Baik (Resiliensi)";
+                        riskDescText =
+                            "Luar biasa. Pola perilaku Anda menunjukkan batas sehat antara kehidupan nyata dan stimulus digital. Sirkuit dopamin Anda memiliki kontrol yang kuat dan tidak mudah dimanipulasi oleh taktik infinite scroll.";
+                        riskColorClass =
+                            "bg-[#8AE3C2]/20 text-[#0D9488] border-[#8AE3C2]";
+                        riskGlowClass = "#0D9488";
+                        threatLevel = "STATUS: KESEHATAN PIKIRAN AMAN";
+                    } else if (totalScore <= 55) {
+                        riskBadgeText = "RISIKO SEDANG // DIGITAL VULNERABLE";
+                        riskTitleText = "Kestabilan Kognitif: Sedang (Rentan)";
+                        riskDescText =
+                            "Perlu perhatian. Algoritma media sosial mulai mengintervensi sirkuit penghargaan otak Anda. Anda mulai membandingkan fisik dan pencapaian Anda secara negatif, serta mengalami gangguan tidur minor.";
+                        riskColorClass =
+                            "bg-[#F5C564]/20 text-[#D97706] border-[#F5C564]/60";
+                        riskGlowClass = "#D97706";
+                        threatLevel = "STATUS: DETEKSI KECEMASAN SEDANG";
+                    } else {
+                        riskBadgeText = "RISIKO TINGGI // CRITICAL EXPOSURE";
+                        riskTitleText = "Kestabilan Kognitif: Rendah (Krisis)";
+                        riskDescText =
+                            "Bahaya. Paparan manipulasi algoritma telah membajak sirkuit atensi dan dopamin Anda secara kronis. Anda mengalami gejala kecemasan hebat, body dysmorphia, insomnia, dan digital burnout yang parah.";
+                        riskColorClass =
+                            "bg-[#EE6C81]/20 text-[#EE6C81] border-[#EE6C81]/60 font-bold";
+                        riskGlowClass = "#EE6C81";
+                        threatLevel = "STATUS: PERLU INTERVENSI PSIKOLOGIS";
+                    }
+
+                    // Update Score text
+                    document.getElementById("result-score-text").textContent =
+                        totalScore;
+
+                    const badge = document.getElementById("result-risk-badge");
+                    badge.textContent = riskBadgeText;
+                    badge.className = `inline-block px-4 py-1.5 font-fredoka text-xs font-bold uppercase tracking-wide rounded-full border border-slate-200 ${riskColorClass}`;
+
+                    document.getElementById("result-risk-title").textContent =
+                        riskTitleText;
+                    document.getElementById(
+                        "result-risk-description",
+                    ).textContent = riskDescText;
+
+                    // Update Donut Chart Ring
+                    const circle = document.getElementById("result-svg-circle");
+                    const maxCircumference = 251.2;
+                    const offset =
+                        maxCircumference - (totalScore / 75) * maxCircumference;
+
+                    circle.style.strokeDashoffset = offset;
+                    circle.setAttribute("stroke", riskGlowClass);
+
+                    // Update Pulse Icon border & status color
+                    const pulseIcon =
+                        document.getElementById("result-pulse-icon");
+                    pulseIcon.style.borderColor = riskGlowClass;
+                    pulseIcon.style.backgroundColor = `${riskGlowClass}22`;
+
+                    if (threatIndicator) {
+                        threatIndicator.textContent = threatLevel;
+                        if (totalScore <= 35) {
+                            threatIndicator.className =
+                                "text-[#8AE3C2] font-bold";
+                        } else if (totalScore <= 55) {
+                            threatIndicator.className =
+                                "text-[#F5C564] font-bold";
+                        } else {
+                            threatIndicator.className =
+                                "text-[#EE6C81] font-bold animate-pulse";
+                        }
+                    }
+
+                    // Transition views & Unlock chatbot
+                    questionnaireState.classList.add("hidden");
+                    resultsState.classList.remove("hidden");
+                }
+
+                // RESET AUDIT QUIZ BUTTON EVENT
+                document
+                    .getElementById("audit-reset-btn")
+                    .addEventListener("click", () => {
+                        playSound("reset");
+                        currentQuestionIdx = 0;
+                        answers.fill(0);
+
+                        resultsState.classList.add("hidden");
+                        questionnaireState.classList.remove("hidden");
+
+                        if (threatIndicator) {
+                            threatIndicator.textContent =
+                                "STATUS: PIKIRAN STABIL";
+                            threatIndicator.className =
+                                "text-[#8AE3C2] font-bold";
+                        }
+
+                        renderQuestion();
+                    });
+
+                // Initial Questionnaire render
+                renderQuestion();
+
+                // Check URL query parameters to activate the correct tab on page load
+                const urlParams = new URLSearchParams(window.location.search);
+                const tabParam = urlParams.get("tab");
+                if (
+                    tabParam &&
+                    ["home", "database", "scanning"].includes(tabParam)
+                ) {
+                    const btn = document.getElementById(`tab-btn-${tabParam}`);
+                    if (btn) btn.click();
+                }
+            });
+        </script>
+    </body>
+</html>
