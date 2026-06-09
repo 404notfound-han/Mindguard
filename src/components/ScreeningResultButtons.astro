@@ -1,0 +1,27 @@
+---
+// Dynamic Screening Result Buttons Component
+// Props: status (string) - nilai status skrining user: 'normal', 'aman', 'parah', 'kritis'
+// Jika status 'normal' atau 'aman': hanya tampilkan tombol Ulangi Skrining dan Akses Mindguard
+// Jika status 'parah' atau 'kritis': tampilkan semua tiga tombol
+
+const { status } = Astro.props;
+
+// Normalisasi status untuk perbandingan
+const isSafeStatus = ['normal', 'aman'].includes(status?.toLowerCase() ?? '');
+const isCriticalStatus = ['parah', 'kritis'].includes(status?.toLowerCase() ?? '');
+---
+<div class="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xl mx-auto">
+  <button class="w-full sm:w-auto px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-xl text-sm transition-all duration-200 flex items-center justify-center gap-2 border border-gray-200 shadow-sm">
+    🔄 ULANGI SKRINING MANDIRI
+  </button>
+
+  <a href="https://mindguard-ai-han.streamlit.app/" target="_blank" class="w-full sm:w-auto px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-xl text-sm transition-all duration-200 shadow-md shadow-emerald-100 flex items-center justify-center gap-2">
+    ✨ Akses Mindguard
+  </a>
+
+  {!isSafeStatus && (
+    <a href="tel:119" class="w-full sm:w-auto px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white font-semibold rounded-xl text-sm transition-all duration-200 shadow-md shadow-red-100 flex items-center justify-center gap-2 animate-pulse">
+      🚨 Hubungi Darurat (119/118)
+    </a>
+  )}
+</div>
